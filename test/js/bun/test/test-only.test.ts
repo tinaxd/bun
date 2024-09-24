@@ -21,3 +21,12 @@ test("only resets per test", async () => {
   expect(result.stderr.toString()).toContain(" 0 fail\n");
   expect(result.stderr.toString()).toContain("Ran 6 tests across 4 files");
 });
+
+test("describe.only", async () => {
+  const files = ["./only-describe-1.ts"];
+  const result = await $.cwd(import.meta.dir)`${bunExe()} test --only ${{ raw: files.join(" ") }}`;
+
+  expect(result.stderr.toString()).toContain(" 1 pass\n");
+  expect(result.stderr.toString()).toContain(" 0 fail\n");
+  expect(result.stderr.toString()).toContain("Ran 1 tests across 1 files");
+});
