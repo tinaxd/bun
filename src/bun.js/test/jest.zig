@@ -855,6 +855,7 @@ pub const DescribeScope = struct {
             this.tag == .todo) return false;
         if (Jest.runner.?.only and this.tag == .only) return true;
         if (this.parent != null) return this.parent.?.shouldEvaluateScope();
+        if (Jest.runner.?.only) return false;
         return true;
     }
 
